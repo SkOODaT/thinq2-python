@@ -7,6 +7,7 @@ from thinq2.model.thinq import (
     DeviceDescriptor,
     ThinQResult,
     ThinQResultSuccess,
+    ThinQPrint,
     IOTRegistration,
     ModelJsonDescriptor,
 )
@@ -23,6 +24,11 @@ class ThinQClient(BaseClient):
     @get("service/devices/{device_id}")
     def get_raw_device(self, device_id: Path):
         """Retrieves an individual device without schema"""
+
+    @json
+    @post("service/devices/{device_id}/control-sync")
+    def control_sync(self, device_id: Path, command: Field, ctrlKey: Field, dataKey: Field, dataValue: Field) -> ThinQPrint():
+        """PLACE HOLDER"""
 
     @get("service/devices/{device_id}")
     def get_device(self, device_id: Path) -> ThinQResult(DeviceDescriptor):

@@ -175,6 +175,13 @@ class ThinQResultSuccess(BaseThinQResult):
     def is_successful(self, data, **kwargs):
         return data["result_code"] == ThinQResultCode.OK
 
+class ThinQPrint(BaseThinQResult):
+    result = fields.Raw()
+
+    @post_load
+    def is_successful(self, data, **kwargs):
+        return data
+
 
 class ThinQResult(BaseThinQResult):
     def __init__(self, result_class):
