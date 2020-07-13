@@ -12,7 +12,16 @@ from thinq2.model.thinq import (
     ModelJsonDescriptor,
 )
 
+from uplink import response_handler
+import pprint
 
+@response_handler
+def log_response(response):
+    #pprint.pprint(response.content, indent=2)
+    return response
+
+
+@log_response
 class ThinQClient(BaseClient):
     """LG ThinQ API client"""
 
